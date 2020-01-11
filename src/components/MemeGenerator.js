@@ -1,6 +1,7 @@
 import React from "react";
 import "./MemeGenerator.css";
 
+
 class MemeGenerator extends React.Component {
     constructor() {
         super();
@@ -47,7 +48,7 @@ class MemeGenerator extends React.Component {
                             type = "text"
                             name = "topText"
                             value = {this.state.topText}
-                            placeholder = "Top text"
+                            placeholder = "Top text.."
                             onChange = {this.handleChange}
                         />
 
@@ -56,11 +57,11 @@ class MemeGenerator extends React.Component {
                             type = "text"
                             name = "bottomText"
                             value = {this.state.bottomText}
-                            placeholder = "Bottom text"
+                            placeholder = "Bottom text.."
                             onChange = {this.handleChange}
                         />
 
-                        <button> Generate </button>
+                        <button className = "generateButton" > Generate </button>
                     </form>
                 </div>
             </div>

@@ -1,0 +1,23 @@
+.userInputForm {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+
+    margin: 10px;
+}
+
+.topTextField, .bottomTextField, .generateButton {
+    margin-right: 5px;
+    font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+    font-size: 1.5vw;
+}
+
+.generateButton{
+    background-color: darkslateblue;
+    border: none;
+    color: white;
+    padding: 0.3vw 1vw;
+    cursor: pointer;
+    border-radius: 4px;
+}
