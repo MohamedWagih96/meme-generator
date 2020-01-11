@@ -1,0 +1,13 @@
+.userInputForm {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+
+    margin: 10px;
+}
+
+.topTextField, .bottomTextField {
+    margin-right: 5px;
+    width: 40%;
+}
