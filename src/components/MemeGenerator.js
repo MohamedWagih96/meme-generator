@@ -1,5 +1,9 @@
 import React from "react";
+import html2canvas from "html2canvas";
+import Form from "./Form";
+import Meme from "./Meme";
 import "./MemeGenerator.css";
+
 
 
 class MemeGenerator extends React.Component {
@@ -14,7 +18,7 @@ class MemeGenerator extends React.Component {
         };
 
         this.handleChange = this.handleChange.bind(this);
-
+        this.handleClick = this.handleClick.bind(this);
     }
 
     componentDidMount() {
@@ -30,6 +34,26 @@ class MemeGenerator extends React.Component {
         })
     }
 
+    shuffle() {
+        let randomIndex = Math.floor(Math.random() * this.state.allMemeImgs.length);
+        this.setState({
+            randomImg: this.state.allMemeImgs[randomIndex].url
+        });
+    }
+
+    save() {
+        console.log("yo")
+    }
+
+    handleClick(event) {
+        //To prevent page refreshing
+        event.preventDefault();
+        const {name} = event.target;
+
+        if(name === "shuffleButton") this.shuffle();
+        else if(name === "saveButton") this.save();
+    }
+
     handleChange(event) {
         const {name, value} = event.target;
 
@@ -40,30 +64,19 @@ class MemeGenerator extends React.Component {
 
     render() {
         return(
-            <div>
-                <div className = "userInputForm">
-                    <form onClick = {this.handleClick}>
-                        <input 
-                            className = "topTextField"
-                            type = "text"
-                            name = "topText"
-                            value = {this.state.topText}
-                            placeholder = "Top text.."
-                            onChange = {this.handleChange}
-                        />
+            <div className = "memeGeneratorBody">
+                <Form 
+                    topText = {this.state.topText}
+                    bottomText = {this.state.bottomText}
+                    handleChange = {this.handleChange}
+                    handleClick = {this.handleClick}
+                />
 
-                        <input 
-                            className = "bottomTextField"
-                            type = "text"
-                            name = "bottomText"
-                            value = {this.state.bottomText}
-                            placeholder = "Bottom text.."
-                            onChange = {this.handleChange}
-                        />
-
-                        <button className = "generateButton" > Generate </button>
-                    </form>
-                </div>
+                <Meme 
+                    url = {this.state.randomImg}
+                    topText = {this.state.topText}
+                    bottomText = {this.state.bottomText}
+                /> 
             </div>
         );
     }
