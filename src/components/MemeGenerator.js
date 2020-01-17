@@ -1,9 +1,9 @@
 import React from "react";
-import html2canvas from "html2canvas";
+import domtoimage from 'dom-to-image';
+
 import Form from "./Form";
 import Meme from "./Meme";
 import "./MemeGenerator.css";
-
 
 
 class MemeGenerator extends React.Component {
@@ -13,8 +13,11 @@ class MemeGenerator extends React.Component {
         this.state = {
             topText: "",
             bottomText: "",
-            randomImg: "https://i.imgur.com/XTNyiVw.png",
-            allMemeImgs: []
+            meme: {
+                name: "Joker and Mini Joker",
+                img: "https://i.imgur.com/XTNyiVw.png"
+            },
+            memez: []
         };
 
         this.handleChange = this.handleChange.bind(this);
@@ -26,7 +29,7 @@ class MemeGenerator extends React.Component {
         .then(response => response.json())
         .then(data => {
             this.setState({
-                allMemeImgs: data.data.memes
+                memez: data.data.memes
             })
         })
         .catch(error => {
@@ -35,18 +38,31 @@ class MemeGenerator extends React.Component {
     }
 
     shuffle() {
-        let randomIndex = Math.floor(Math.random() * this.state.allMemeImgs.length);
+        let randomIndex = Math.floor(Math.random() * this.state.memez.length);
+        let randomMeme = this.state.memez[randomIndex];
         this.setState({
-            randomImg: this.state.allMemeImgs[randomIndex].url
+            meme: {
+                name: randomMeme.name,
+                img: randomMeme.url
+            }
         });
     }
 
     save() {
-        console.log("yo")
+        domtoimage.toJpeg(document.getElementById("memeWrapper"), {quality: 1.0})
+        .then(dataUrl => {
+            //Create a hyperlink
+            let link = document.createElement("a");
+            //File name
+            link.download = this.state.meme.name;
+            //Destination
+            link.href = dataUrl;
+            link.click();
+        });
     }
 
     handleClick(event) {
-        //To prevent page refreshing
+        //To prevent page from automatic refreshing
         event.preventDefault();
         const {name} = event.target;
 
@@ -71,12 +87,12 @@ class MemeGenerator extends React.Component {
                     handleChange = {this.handleChange}
                     handleClick = {this.handleClick}
                 />
-
+                
                 <Meme 
-                    url = {this.state.randomImg}
+                    url = {this.state.meme.img}
                     topText = {this.state.topText}
                     bottomText = {this.state.bottomText}
-                /> 
+                />         
             </div>
         );
     }
