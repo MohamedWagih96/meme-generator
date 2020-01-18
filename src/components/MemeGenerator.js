@@ -15,13 +15,16 @@ class MemeGenerator extends React.Component {
             bottomText: "",
             meme: {
                 name: "Joker and Mini Joker",
-                img: "https://i.imgur.com/XTNyiVw.png"
+                img: "https://i.imgur.com/XTNyiVw.png",
+                width: 1200,
+                height: 600
             },
             memez: []
         };
 
         this.handleChange = this.handleChange.bind(this);
-        this.handleClick = this.handleClick.bind(this);
+        this.handleClick = this.handleClick.bind(this);  
+        this.handleLoad = this.handleLoad.bind(this); 
     }
 
     componentDidMount() {
@@ -38,12 +41,16 @@ class MemeGenerator extends React.Component {
     }
 
     shuffle() {
+        this.toggleVisibility("visible", "hidden");
+
         let randomIndex = Math.floor(Math.random() * this.state.memez.length);
         let randomMeme = this.state.memez[randomIndex];
         this.setState({
             meme: {
                 name: randomMeme.name,
-                img: randomMeme.url
+                img: randomMeme.url,
+                width: randomMeme.width,
+                height: randomMeme.height
             }
         });
     }
@@ -59,6 +66,11 @@ class MemeGenerator extends React.Component {
             link.href = dataUrl;
             link.click();
         });
+    }
+
+    toggleVisibility(spinnerVisibility, memeVisibility) {
+        document.getElementById("spinner").style.visibility = spinnerVisibility;
+        document.getElementById("memeWrapper").style.visibility = memeVisibility;
     }
 
     handleClick(event) {
@@ -78,10 +90,14 @@ class MemeGenerator extends React.Component {
         });
     }
 
+    handleLoad(spinnerVisibility, memeVisibility) {
+        this.toggleVisibility(spinnerVisibility, memeVisibility);
+    }
+
     render() {
         return(
             <div className = "memeGeneratorBody">
-                <Form 
+                <Form
                     topText = {this.state.topText}
                     bottomText = {this.state.bottomText}
                     handleChange = {this.handleChange}
@@ -89,10 +105,13 @@ class MemeGenerator extends React.Component {
                 />
                 
                 <Meme 
-                    url = {this.state.meme.img}
+                    data = {this.state.meme}
                     topText = {this.state.topText}
                     bottomText = {this.state.bottomText}
-                />         
+                    handleLoad = {this.handleLoad}
+                />  
+
+                <div id = "spinner"></div>       
             </div>
         );
     }

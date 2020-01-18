@@ -1,25 +1,25 @@
-body{
+body {
     margin: 0;
 }
 
-.header{
+.header {
     background-color: orangered;
 }
 
-.headerContainer{
+.headerContainer {
     display: flex;
     flex-direction: row;
     justify-content: center;
     align-items: center;
 }
 
-.headerImg{
+.headerImg {
     order: 0;
     width: 10%;
     height: 10%;
 }
 
-.headerTitle{
+.headerTitle {
     color: white;
     order: 1;
     font-size: 3vw;

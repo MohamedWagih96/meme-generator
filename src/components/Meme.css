@@ -1,4 +1,5 @@
 #memeWrapper {
+    visibility: visible;
     position: relative;
     display: flex;
     flex-direction: column;

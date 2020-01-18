@@ -1,15 +1,17 @@
 import React from "react";
 import "./Meme.css"
 
+
 function Meme(props) {
-    const stylez = {width: "80%", height: "auto"};
-    const me = {width: "1000px", height: "1000px"};
+    const scaleDown = {width: "50%", height: "auto"};
+    const normalSize = {width: props.data.width, height: props.data.height};
     return(
         <div id = "memeWrapper">
-            <img 
-                style = {props.topText === "XYZ" ? stylez : me}
+            <img
+                style = {props.data.width > 500 ? scaleDown : normalSize}
                 alt = "Dank Meme"
-                src = {props.url}
+                src = {props.data.img}
+                onLoad = {() => props.handleLoad("hidden", "visible")}
             />
 
             <h2 className = "memeTopText"> {props.topText} </h2>
