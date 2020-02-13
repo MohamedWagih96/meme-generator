@@ -19,8 +19,17 @@ class MemeGenerator extends React.Component {
                 width: 1200,
                 height: 600
             },
-            memez: []
+            memes: []
         };
+
+        this.badMemes = [
+            "61539", "28251713", "164335977", "112126428", "93895088", "71428573", "123999232",
+            "178591752", "21735", "53764", "99683372", "28034788", "14230520", "129242436",
+            "101910402", "124822590", "47235368", "161865971", "56225174", "131087935", 
+            "21604248", "21735", "101288", "155067746", "134797956", "155518747", "170715647",
+            "181913649", "87743020", "438680", "188390779", "6235864", "157978092", "1035805",
+            "196652226", 
+        ];
 
         this.handleChange = this.handleChange.bind(this);
         this.handleClick = this.handleClick.bind(this);  
@@ -31,20 +40,28 @@ class MemeGenerator extends React.Component {
         fetch("https://api.imgflip.com/get_memes")
         .then(response => response.json())
         .then(data => {
+            const filteredMemes = this.filterMemes(data.data.memes);
+
             this.setState({
-                memez: data.data.memes
-            })
+                memes: filteredMemes
+            });
         })
         .catch(error => {
             console.log("Error while retrieving data from the server")
         })
     }
 
+    filterMemes(memes) {
+        return memes.filter(meme => !(this.badMemes.includes(meme.id)))
+                    .map(meme => meme);
+    }
+
     shuffle() {
         this.toggleVisibility("visible", "hidden");
 
-        let randomIndex = Math.floor(Math.random() * this.state.memez.length);
-        let randomMeme = this.state.memez[randomIndex];
+        let randomIndex = Math.floor(Math.random() * this.state.memes.length);
+        let randomMeme = this.state.memes[randomIndex];
+
         this.setState({
             meme: {
                 name: randomMeme.name,
