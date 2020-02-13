@@ -1,10 +1,8 @@
 import React from "react";
-import domtoimage from 'dom-to-image';
+import domtoimage from "dom-to-image";
 
-import Form from "./Form";
-import Meme from "./Meme";
-import "./MemeGenerator.css";
-
+import Header from "./Header";
+import Body from "./Body";
 
 class MemeGenerator extends React.Component {
     constructor() {
@@ -112,27 +110,20 @@ class MemeGenerator extends React.Component {
     }
 
     render() {
-        return(
-            <div className = "memeGeneratorBody">
-                <Form
-                    topText = {this.state.topText}
-                    bottomText = {this.state.bottomText}
-                    handleChange = {this.handleChange}
-                    handleClick = {this.handleClick}
-                />
-                
-                <Meme 
-                    data = {this.state.meme}
-                    topText = {this.state.topText}
-                    bottomText = {this.state.bottomText}
-                    handleLoad = {this.handleLoad}
-                />  
-
-                <div id = "spinner"></div>       
-            </div>
-        );
+    	return(
+	        <div>
+	            <Header />
+	            <Body 
+	            	data = {this.state.meme}
+	            	topText = {this.state.topText}
+	                bottomText = {this.state.bottomText}
+	                handleChange = {this.handleChange}
+	                handleClick = {this.handleClick}
+                	handleLoad = {this.handleLoad}
+	            />
+	        </div>
+	    );
     }
 }
-
 
 export default MemeGenerator;

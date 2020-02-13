@@ -1,12 +1,5 @@
-body {
-    margin: 0;
-}
-
-.header {
+.mgHeader {
     background-color: orangered;
-}
-
-.headerContainer {
     display: flex;
     flex-direction: row;
     justify-content: center;
