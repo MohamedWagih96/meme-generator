@@ -9,7 +9,7 @@ function Form(props) {
                 type = "text"
                 name = "topText"
                 value = {props.topText}
-                maxLength = {"50"}
+                maxLength = {"60"}
                 placeholder = "Top text.."
                 onChange = {props.handleChange}
             />
@@ -19,14 +19,13 @@ function Form(props) {
                 type = "text"
                 name = "bottomText"
                 value = {props.bottomText}
-                maxLength = {"50"}
+                maxLength = {"60"}
                 placeholder = "Bottom text.."
                 onChange = {props.handleChange}
             />
 
             <div className = "userInputForm-Buttons">
                 <button className = "shuffleButton" name = "shuffleButton" onClick = {props.handleClick}>Shuffle</button>
-
                 <button className = "saveButton" name = "saveButton" onClick = {props.handleClick}>Save</button>
             </div>
         </form>

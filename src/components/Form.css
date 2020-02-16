@@ -9,7 +9,7 @@
 .topTextField, .bottomTextField, .shuffleButton, .saveButton {
     margin-right: 5px;
     font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
-    font-size: 1.5vw;
+    font-size: 1.5em;
 }
 
 .shuffleButton, .saveButton {
@@ -47,11 +47,14 @@
     }
 
     .shuffleButton, .saveButton {
-        width: 100%;
+        padding: 0;
+        text-align: center;
+        width: 100px;
+        height: 40px;
     }
 
     .topTextField, .bottomTextField, .shuffleButton, .saveButton {
-        font-size: 13px;
-        margin: 1px;
+        font-size: 25px;
+        margin: 2px;
     }
 }

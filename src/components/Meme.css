@@ -5,7 +5,6 @@
     flex-direction: column;
     justify-content: center;
     align-items: center;
-    width: 100%;
 }
 
 .memeTopText, .memeBottomText {
@@ -14,10 +13,13 @@
     margin: 5px 0;
 
     color: white;
-    font-size: 2vw;
-    font-weight: 500;
+    font-size: 2em;
+    font-weight: 600;
     text-shadow: -1px -1px 0 #000, 1px -1px 0 #000, -1px 1px 0 #000, 1px 1px 0 #000;
     font-family: Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif;
+
+    width: 300px;
+    word-wrap: break-word;
 }
 
 .memeTopText {
@@ -26,4 +28,11 @@
 
 .memeBottomText {
     bottom: 0;
+}
+
+@media screen and (max-width: 500px) {
+    .memeTopText, .memeBottomText {
+        width: 300px;
+        font-size: 2em;
+    }
 }
